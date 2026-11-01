@@ -340,11 +340,7 @@
     const lines = [];
     if (header) lines.push(header.trim(), '');
     lines.push('# name: ' + layout.name);
-    const sorted = layout.chords.slice().sort((a, b) => {
-      const fa = a.keys.filter((k) => k[0] === 'F').map(keyOrder).join(',');
-      const fb = b.keys.filter((k) => k[0] === 'F').map(keyOrder).join(',');
-      return a.keys.length - b.keys.length || fa.localeCompare(fb) || a.id.localeCompare(b.id);
-    });
+    const sorted = layout.chords; // keep the layout's own order
     for (const c of sorted) lines.push((formatClassic(c.keys) || formatT4(c.keys)) + ' = ' + formatOutput(c.tokens));
     return lines.join('\n') + '\n';
   }
